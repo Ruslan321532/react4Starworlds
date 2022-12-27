@@ -102,17 +102,7 @@ export default class SwapiService {
       skin_color: person.skin_color,
       hair_color: person.hair_color,
       homeworld: person.homeworld,
-      height: person.height
+      height: person.height 
     }
   }
 }
-
-// _transformCharacters = (characters) => {
-//   return {
-//     id: this._extractId(characters),
-//     name: characters.name,
-//     Height: characters.Height,
-//     mass: characters.mass,
-//     gender: characters.gender
-//   };
-// };
