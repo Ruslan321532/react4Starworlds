@@ -1,74 +1,68 @@
 import React, { useState, useEffect } from 'react';
-import SwapiService from '../../services/swapi-service';
-import './person-details.css';
+import SwapiService from '../../services/swapi-service'
+import './item-details.css';
 
 
-const RandomCharacter = () => {
+const ItemDetails = ({itemId}) => {
+
   const [state, setState] = useState({data: {}})
-  const {id, name, birthYear, gender, mass, skin_color, hair_color, eyeColor, height} = state.data ;
-  const characterImg = `https://starwars-visualguide.com/assets/img/characters/${id}.jpg`
-  const swapi = new SwapiService()///Данные с backend'da которые переходят в формат json
+  const {id, name, hair_color, gender, birthYear, eyeColor, mass, skin_color,height,} = state.data ;
+  const itemImg = `https://starwars-visualguide.com/assets/img/characters/${id}.jpg`
+  const swapi = new SwapiService() 
 
-  const _updateCharacter = () => {
-    const id = Math.floor(Math.random() * (20 - 1 + 1) + 1)
-    swapi.getPerson(id)
+
+  useEffect(() => {
+    swapi.getPerson(itemId)
     .then(data => {
-      setState({data:data})
+      setState({data: data})
     })
-  }
-   useEffect(() => {
-    _updateCharacter()
-    setInterval(() => _updateCharacter(), 2000)
+  }, [itemId])
 
 
- }, [])
-
- console.log("EYE COLOR", state.data);
 
   return(
-    
-    <div className="random-planet jumbotron rounded">
-        <img className="planet-image"
-            src={characterImg} />
-        <div>
+      <div className="person-details card">
+        <img className="person-image"
+          src={itemImg}/>
+
+        <div className="card-body">
           <h4>{name}</h4>
           <ul className="list-group list-group-flush">
+            <li className="list-group-item">
+              <span className="term">Gender</span>
+              <span>{gender}</span>
+            </li>
+            <li className="list-group-item">
+              <span className="term">Birth Year</span>
+              <span>{birthYear}</span>
+            </li>
+            <li className="list-group-item">
+              <span className="term">Eye Color</span>
+              <span>{eyeColor}</span>
+            </li>
             <li className="list-group-item">
               <span className="term">hair_color</span>
               <span>{hair_color}</span>
             </li>
             <li className="list-group-item">
-              <span className="term">birthYear</span>
-              <span>{birthYear}</span>
-            </li>
-            <li className="list-group-item">
-              <span className="term">Gender</span>
-              <span>{gender}</span>
-            </li>
-            <li className='list-group-item'>
-              <span className='term'>mass</span>
+              <span className="term">mass</span>
               <span>{mass}</span>
             </li>
-            <li className='list-group-item'>
-              <span className='term'>skin_color</span>
-              <span>{skin_color}</span>
-            </li>
-            <li className='list-group-item'>
-              <span className='term'>height</span>
+            <li className="list-group-item">
+              <span className="term">height</span>
               <span>{height}</span>
             </li>
-            <li className='list-group-iteam'>
-              <span className='term'>eye_color  </span>
-              <span>{eyeColor}</span>
+            <li className="list-group-item">
+              <span className="term">skin_color</span>
+              <span>{skin_color}</span>
             </li>
           </ul>
         </div>
       </div>
   )
 }
-export default RandomCharacter;
 
-
+export default ItemDetails;
 
 
 // export default class RandomCharacter extends Component {
