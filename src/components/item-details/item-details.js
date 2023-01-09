@@ -10,8 +10,20 @@ const ItemDetails = ({itemId}) => {
   const itemImg = `https://starwars-visualguide.com/assets/img/characters/${id}.jpg`
   const swapi = new SwapiService() 
 
+    // const updatePerson = () => {
+  //   const id = Math.floor(Math.random() * (25 - 1 + 1) + 1) 
+  //   swapi.getPerson(id)
+  //   .then(data => {
+  //     SetState({data: data})
+  //   })
+  // }
+  // useEffect(() => {
+  //   setInterval(() => updatePerson(), 5000)
+  // })
 
-  useEffect(() => {
+
+
+  useEffect(() => { 
     swapi.getPerson(itemId)
     .then(data => {
       setState({data: data})
